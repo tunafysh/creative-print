@@ -83,7 +83,7 @@ export default function Home() {
         </p>
 		<div className="flex flex-row items-center">
 
-        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => router.replace(`/checkout/${item.id}`)}>
+        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => router.replace(`/checkout/?id=${item.id}`)}>
 		<span className="font-bold text-white">Order now </span>
 		</Button>
 		<span className="mt-4 bg-emerald-500 rounded-md text-[0.6rem] pl-2 pr-2 px-2 w-8 py-0 flex items-center justify-center text-white h-9 rounded-l-none">
@@ -93,8 +93,11 @@ export default function Home() {
       </BackgroundGradient>
 				):(
 		// eslint-disable-next-line react/jsx-key
-		<div className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-background shadow-md border-2 dark:border-zinc-300 border-zinc-800">
-		<Image src={theme === "light" ? "/lightmodehoodie.png" : "/darkmodehoodie.png"} width={400} height={500} className="object-contain" alt="hoodie" />
+		<div className=" max-w-sm p-4 sm:p-10 bg-background shadow-md border-2 dark:border-zinc-300 border-zinc-800">
+			<div className="bg-foreground p-4 rounded-md">
+
+		<Image src={theme === "light" ? "/lightmodehoodie.png" : "/darkmodehoodie.png"} width={400} height={500} className="object-contain" alt="hoodie"/>
+			</div>
         <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
           {item.title}
         </p>
@@ -104,7 +107,7 @@ export default function Home() {
         </p>
 		<div className="flex flex-row items-center">
 
-        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => router.replace(`/checkout/${item.id}`)}>
+        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => router.replace(`/checkout/?id=${item.id}`)}>
 		<span className="font-bold text-white">Order now </span>
 		</Button>
 		<span className="mt-4 bg-emerald-500 rounded-md text-[0.6rem] pl-2 pr-2 px-2 w-8 py-0 flex items-center justify-center text-white h-9 rounded-l-none">
