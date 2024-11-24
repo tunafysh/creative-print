@@ -11,9 +11,12 @@ import { Badge } from "@/components/ui/badge";
 import { StarIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
 	const { theme } = useTheme();
+	const router = useRouter();
+
   return (
    <div className="flex flex-col items-center justify-center overflow-x-hidden">
     <div id="navbar" className="text-foreground bg-background fixed top-0 left-0 w-full h-[8vh] z-50 shadow-md shadow-foreground/5 flex flex-row justify-between items-center p-1 px-6">
@@ -80,7 +83,7 @@ export default function Home() {
         </p>
 		<div className="flex flex-row items-center">
 
-        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none">
+        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => router.replace(`/checkout/${item.id}`)}>
 		<span className="font-bold text-white">Order now </span>
 		</Button>
 		<span className="mt-4 bg-emerald-500 rounded-md text-[0.6rem] pl-2 pr-2 px-2 w-8 py-0 flex items-center justify-center text-white h-9 rounded-l-none">
@@ -101,7 +104,7 @@ export default function Home() {
         </p>
 		<div className="flex flex-row items-center">
 
-        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none">
+        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => router.replace(`/checkout/${item.id}`)}>
 		<span className="font-bold text-white">Order now </span>
 		</Button>
 		<span className="mt-4 bg-emerald-500 rounded-md text-[0.6rem] pl-2 pr-2 px-2 w-8 py-0 flex items-center justify-center text-white h-9 rounded-l-none">
