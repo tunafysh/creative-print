@@ -21,30 +21,43 @@ export default function Home() {
    <div className="flex flex-col items-center justify-center overflow-x-hidden">
     <div id="navbar" className="text-foreground bg-background fixed top-0 left-0 w-full h-[8vh] z-50 shadow-md shadow-foreground/5 flex flex-row justify-between items-center p-1 px-6">
 			<div className="flex flex-row items-center">
-			<h1 className="text-xl font-bold mr-2">Creative <br /> Print</h1>
+				<div className="cursor-pointer" onClick={() => {
+					const idk = document.getElementsByClassName("homepage")[0];
+
+					if(idk){
+						idk.scrollIntoView({
+							behavior: "smooth",
+							block: "center"
+						});
+					}
+				}}>
+				<h1 className="text-xl font-bold mr-2">Creative <br /> Print</h1>
+				</div>
 			</div>
 			<ul className="flex flex-row list-none justify-between items-center">
-				<motion.li whileHover={{ color: "hsl(var(--secondary))" }} className="mr-5 font-bold cursor-pointer text-foreground" transition={{ duration: 0.5 }}><a onClick={() => {
-					const idk = document.getElementById("FAQ");
+				<motion.li className="mr-5 hover:text-secondary font-bold cursor-pointer text-foreground" transition={{ duration: 0.5 }}><a onClick={() => {
+					const idk = document.getElementById("products");
 					if (idk) {
 						idk.scrollIntoView({
-							behavior: "smooth"
+							behavior: "smooth",
+							"block": "center"
 						});
 					}
 				}}>Products</a></motion.li>
 
-				<motion.li whileHover={{ color: "hsl(var(--secondary))" }} className="mr-5 font-bold cursor-pointer text-foreground" transition={{ duration: 0.5 }}><a onClick={() => {
+				<motion.li className="mr-5 hover:text-secondary font-bold cursor-pointer text-foreground" transition={{ duration: 0.5 }}><a onClick={() => {
 					const element = document.getElementById("FAQ");
 					if (element) {
 						element.scrollIntoView({
-							behavior: "smooth"
+							behavior: "smooth",
+							block: "center"
 						});
 					}
 				}}>About Us</a></motion.li>
 				<ModeToggle/>
 			</ul>
 			</div>
-      <BackgroundBeamsWithCollision className="bg-transparent -z-10">
+      <BackgroundBeamsWithCollision className="bg-transparent homepage -z-50">
 		<div className="flex flex-col items-center justify-center h-screen">
 		<h1 className="text-5xl font-bold">Fabric Printing, </h1>
         <FlipWords words={["Simplified", "Streamlined", "Enhanced"]} className="text-5xl font-bold bg-clip-text text-transparent" />	
@@ -54,15 +67,14 @@ export default function Home() {
 		</div>
 	  </BackgroundBeamsWithCollision>
 
-		<section id="partners" className={"p-8 w-screen flex flex-col items-center justify-center bg-indigo-600/10"}>
+		{/* <section id="partners" className={"p-8 w-screen flex flex-col items-center justify-center bg-indigo-600/10"}>
 			<h1 className="text-4xl font-bold border-b-2 border-accent w-fit">Trusted by</h1>
-		</section>
+		</section> */}
 		
-		<br />
       <section id="FAQ" className="flex flex-col items-center justify-between h-fit] w-screen bg-indigo-600/25 p-8">
 		<h1 className="text-4xl font-bold border-b-2 border-accent w-fit">About us</h1>
 		<br />
-		<p className="font-bold text-center text-wrap sm:w-full md:w-full w-[40%]">We started our business in 2022. We are a small business that sells custom hoodies, shirts and apparels at an affordable price for you. We started in Kosovo and after a while we have moved to the US and other places. We also ship internationally but this may cost you a few bucks </p>	  </section>
+		<p className="font-bold text-center text-wrap sm:w-full md:w-full lg:w-[40%]">We started our business in 2022. We are a small business that sells custom hoodies, shirts and apparels at an affordable price for you. We started in Kosovo and after a while we have moved to the US and other places. We also ship internationally but this may cost you a few Euros </p>	  </section>
 
 		<section id="products" className={"p-8 flex flex-col items-center justify-center"}>
 			<h1 className="text-4xl font-bold border-b-2 border-accent w-fit">Products</h1>
@@ -71,7 +83,7 @@ export default function Home() {
 			{data.map((item: Card) => (
 				item.special? (
 					// eslint-disable-next-line react/jsx-key
-					<BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-background shadow-md">
+					<BackgroundGradient className="w-[300px] rounded-[22px] p-4 sm:p-10 bg-background shadow-md">
 						<Badge className="dark:hover:bg-primary dark:bg-primary hover:bg-secondary bg-secondary px-1 text-white"><StarIcon width={16} height={16} className="mr-1" />Shpessëll</Badge>
 						<Image src={theme === "light" ? "/lightmodehoodie.png" : "/darkmodehoodie.png"} width={400} height={500} className="object-contain" alt="hoodie" />
         <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
@@ -93,10 +105,10 @@ export default function Home() {
       </BackgroundGradient>
 				):(
 		// eslint-disable-next-line react/jsx-key
-		<div className=" max-w-sm p-4 sm:p-10 bg-background shadow-md border-2 dark:border-zinc-300 border-zinc-800">
-			<div className="bg-foreground p-4 rounded-md">
+		<div className="rounded-[22px] w-[300px] p-4 sm:p-10 bg-background shadow-md border-2 dark:border-zinc-300 border-zinc-800">
+			<div className="">
 
-		<Image src={theme === "light" ? "/lightmodehoodie.png" : "/darkmodehoodie.png"} width={400} height={500} className="object-contain" alt="hoodie"/>
+			<Image src={theme === "light" ? "/lightmodehoodie.png" : "/darkmodehoodie.png"} width={400} height={500} className="object-contain" alt="hoodie" />
 			</div>
         <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
           {item.title}
