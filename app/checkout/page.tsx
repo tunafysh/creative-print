@@ -2,12 +2,12 @@
 import { data } from "@/components/data"
 import { notFound, useSearchParams } from "next/navigation";
 import Image from "next/image";
+import { Suspense } from "react";
 
-export default function Card() {
-
+ function Card() {
     const param = useSearchParams().get("id")
 
-    const {id, type, title, description} = data.find((data) => data.id == param)?? notFound();
+    const {type, title, description} = data.find((data) => data.id == param)?? notFound();
 
     return(
         <div className="w-screen h-screen flex flex-col items-center justify-center">
@@ -21,7 +21,15 @@ export default function Card() {
             <h1>Item: {title}</h1>
             <p>Description: {description}</p>
             </div>
+            </div>
         </div>
-    </div>
+    )
+}
+
+export default function Checkout() {
+    return (
+        <Suspense>
+            <Card/>
+        </Suspense>
     )
 }
