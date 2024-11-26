@@ -1,4 +1,5 @@
 "use client"
+
 import { BackgroundBeamsWithCollision } from "@/components/elements/bgwcollision";;
 import { ModeToggle } from "@/components/elements/modetoggle";
 import { FlipWords } from "@/components/elements/wordflip";
@@ -11,11 +12,10 @@ import { Badge } from "@/components/ui/badge";
 import { StarIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { toast } from "@/hooks/use-toast";
 
 export default function Home() {
 	const { theme } = useTheme();
-	const router = useRouter();
 
   return (
    <div className="flex flex-col items-center justify-center overflow-x-hidden">
@@ -84,7 +84,7 @@ export default function Home() {
 				item.special? (
 					// eslint-disable-next-line react/jsx-key
 					<BackgroundGradient className="w-[300px] rounded-[22px] p-4 sm:p-10 bg-background shadow-md">
-						<Badge className="absolute dark:hover:bg-primary dark:bg-primary hover:bg-secondary bg-secondary px-1 -top-[5px] -left-[4px] text-white"><StarIcon width={16} height={16} className="mr-1" />Shpessëll</Badge>
+						<Badge className="shadow-none absolute dark:hover:bg-primary dark:bg-primary hover:bg-secondary bg-secondary px-1 -top-[5px] -left-[4px] text-white"><StarIcon width={16} height={16} className="mr-1" />Shpessëll</Badge>
 						<Image src={theme === "light" ? "/lightmodehoodie.png" : "/darkmodehoodie.png"} width={400} height={500} className="object-contain" alt="hoodie" />
         <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
           {item.title}
@@ -95,7 +95,10 @@ export default function Home() {
         </p>
 		<div className="flex flex-row items-center">
 
-        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => router.push(`/checkout/?id=${item.id}`)}>
+        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => toast({
+			title: "Order placed",
+			description: "Your order has been placed, will be delivered in 2 business days",
+		})}>
 		<span className="font-bold text-white">Order now </span>
 		</Button>
 		<span className="mt-4 bg-emerald-500 rounded-md text-[0.6rem] pl-2 pr-2 px-2 w-8 py-0 flex items-center justify-center text-white h-9 rounded-l-none">
@@ -119,7 +122,10 @@ export default function Home() {
         </p>
 		<div className="flex flex-row items-center">
 
-        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => router.push(`/checkout/?id=${item.id}`)}>
+        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => toast({
+			title: "Order placed",
+			description: "Your order has been placed, will be delivered in 2 business days",
+		})}>
 		<span className="font-bold text-white">Order now </span>
 		</Button>
 		<span className="mt-4 bg-emerald-500 rounded-md text-[0.6rem] pl-2 pr-2 px-2 w-8 py-0 flex items-center justify-center text-white h-9 rounded-l-none">
