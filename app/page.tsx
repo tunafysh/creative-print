@@ -62,7 +62,7 @@ export default function Home() {
 		<h1 className="text-5xl font-bold">Fabric Printing, </h1>
         <FlipWords words={["Simplified", "Streamlined", "Enhanced"]} className="text-5xl font-bold bg-clip-text text-transparent" />	
 		<br />
-		<p className="font-bold text-xl text-center">We sell custom hoodies, shirts and apparels at an affordable price for you. <br /> We also ship internationally but this may cost you a few bucks</p>
+		<p className="font-bold text-xl text-center">We sell custom hoodies, shirts and apparels at an affordable price for you. <br /> We also ship internationally but this may cost you a few euros</p>
 		<br />
 		</div>
 	  </BackgroundBeamsWithCollision>
