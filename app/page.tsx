@@ -13,6 +13,10 @@ import { StarIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { toast } from "@/hooks/use-toast";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function Home() {
 	const { theme } = useTheme();
@@ -85,7 +89,7 @@ export default function Home() {
 					// eslint-disable-next-line react/jsx-key
 					<BackgroundGradient className="w-[300px] rounded-[22px] p-4 sm:p-10 bg-background shadow-md">
 						<Badge className="shadow-none absolute dark:hover:bg-primary dark:bg-primary hover:bg-secondary bg-secondary px-1 -top-[5px] -left-[4px] text-white"><StarIcon width={16} height={16} className="mr-1" />Shpessëll</Badge>
-						<Image src={theme === "light" ? "/lightmodehoodie.png" : "/darkmodehoodie.png"} width={400} height={500} className="object-contain" alt="hoodie" />
+						<Image src={theme === "light" && item.type === "hoodie" ? "/lightmodehoodie.png" : item.type === "turtleneck" && theme === "light" ? "/lightmodeturtleneck.png" : theme === "light" && item.type === "shirt" ? "/lightmodeshirt.png" : item.type === "turtleneck" && theme === "dark" ? "/darkmodeturtleneck.png": "/darkmodehoodie.png"} width={400} height={500} className="object-contain" alt="hoodie" />
         <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
           {item.title}
         </p>
@@ -93,25 +97,59 @@ export default function Home() {
         <p className="text-sm text-black/70 dark:text-white/70">
 		  {item.description}
         </p>
-		<div className="flex flex-row items-center">
+		<Popover>
+			<PopoverTrigger>
 
-        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => toast({
+			<div className="flex flex-row items-center">
+        		<Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none inline">
+				<span className="font-bold text-white">Order now </span>
+				</Button>
+				<span className="mt-4 bg-emerald-500 rounded-md text-[0.6rem] pl-2 pr-2 px-2 w-8 py-0 flex items-center justify-center text-white h-9 rounded-l-none">
+        		    ${item.price}
+        		  </span>
+				</div>
+			</PopoverTrigger>
+			<PopoverContent className="w-80">
+			<div className="grid gap-4">
+          <div className="space-y-2">
+            <h4 className="font-medium leading-none">Additional info</h4>
+            <p className="text-sm text-muted-foreground">
+              Enter additional info regarding your shipment
+            </p>
+          </div>
+          <div className="grid gap-2">
+            <div className="grid grid-cols-3 items-center gap-4">
+              <Label htmlFor="width">Address</Label>
+              <Input
+                id="addr"
+                className="col-span-2 h-8"
+              />
+            </div>
+              <Select>
+				<SelectTrigger>
+					<SelectValue placeholder="Size" />
+				</SelectTrigger>
+				<SelectContent>
+					<SelectItem value="small">Small</SelectItem>
+					<SelectItem value="medium">Medium</SelectItem>
+					<SelectItem value="large">Large</SelectItem>
+				</SelectContent>
+			  </Select>
+			<Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 font-bold" onClick={() => toast({
 			title: "Order placed",
 			description: "Your order has been placed, will be delivered in 2 business days",
-		})}>
-		<span className="font-bold text-white">Order now </span>
-		</Button>
-		<span className="mt-4 bg-emerald-500 rounded-md text-[0.6rem] pl-2 pr-2 px-2 w-8 py-0 flex items-center justify-center text-white h-9 rounded-l-none">
-            ${item.price}
-          </span>
-		</div>
+		})}>Order now</Button>
+          </div>
+        </div>
+			</PopoverContent>
+		</Popover>
       </BackgroundGradient>
 				):(
 		// eslint-disable-next-line react/jsx-key
 		<div className="rounded-[22px] w-[300px] p-4 sm:p-10 bg-background shadow-md border-2 dark:border-zinc-300 border-zinc-800">
 			<div className="">
 
-			<Image src={theme === "light" ? "/lightmodehoodie.png" : "/darkmodehoodie.png"} width={400} height={500} className="object-contain" alt="hoodie" />
+			<Image src={theme === "light" && item.type === "hoodie" ? "/lightmodehoodie.png" : item.type === "turtleneck" && theme === "light" ? "/lightmodeturtleneck.png" : theme === "light" && item.type === "shirt" ? "/lightmodeshirt.png" : item.type === "turtleneck" && theme === "dark" ? "/darkmodeturtleneck.png": item.type === "shirt" && theme === "dark" ? "/darkmodeshirt.png" : "/darkmodehoodie.png"} width={400} height={500} className="object-contain" alt="hoodie" />
 			</div>
         <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
           {item.title}
@@ -120,18 +158,52 @@ export default function Home() {
         <p className="text-sm text-black/70 dark:text-white/70">
 		  {item.description}
         </p>
-		<div className="flex flex-row items-center">
+		<Popover>
+			<PopoverTrigger>
 
-        <Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none" onClick={() => toast({
+			<div className="flex flex-row items-center">
+        		<Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none inline">
+				<span className="font-bold text-white">Order now </span>
+				</Button>
+				<span className="mt-4 bg-emerald-500 rounded-md text-[0.6rem] pl-2 pr-2 px-2 w-8 py-0 flex items-center justify-center text-white h-9 rounded-l-none">
+        		    ${item.price}
+        		  </span>
+				</div>
+			</PopoverTrigger>
+			<PopoverContent className="w-80">
+			<div className="grid gap-4">
+          <div className="space-y-2">
+            <h4 className="font-medium leading-none">Additional info</h4>
+            <p className="text-sm text-muted-foreground">
+              Enter additional info regarding your shipment
+            </p>
+          </div>
+          <div className="grid gap-2">
+            <div className="grid grid-cols-3 items-center gap-4">
+              <Label htmlFor="width">Address</Label>
+              <Input
+                id="addr"
+                className="col-span-2 h-8"
+              />
+            </div>
+              <Select>
+				<SelectTrigger>
+					<SelectValue placeholder="Size" />
+				</SelectTrigger>
+				<SelectContent>
+					<SelectItem value="small">Small</SelectItem>
+					<SelectItem value="medium">Medium</SelectItem>
+					<SelectItem value="large">Large</SelectItem>
+				</SelectContent>
+			  </Select>
+			<Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 font-bold" onClick={() => toast({
 			title: "Order placed",
 			description: "Your order has been placed, will be delivered in 2 business days",
-		})}>
-		<span className="font-bold text-white">Order now </span>
-		</Button>
-		<span className="mt-4 bg-emerald-500 rounded-md text-[0.6rem] pl-2 pr-2 px-2 w-8 py-0 flex items-center justify-center text-white h-9 rounded-l-none">
-            ${item.price}
-          </span>
-		</div>
+		})}>Order now</Button>
+          </div>
+        </div>
+			</PopoverContent>
+		</Popover>
 					</div>
 				)
 			))}
