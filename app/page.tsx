@@ -17,6 +17,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 export default function Home() {
 	const { theme } = useTheme();
@@ -97,8 +98,8 @@ export default function Home() {
         <p className="text-sm text-black/70 dark:text-white/70">
 		  {item.description}
         </p>
-		<Popover>
-			<PopoverTrigger>
+		<Dialog>
+			<DialogTrigger>
 
 			<div className="flex flex-row items-center">
         		<Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none inline">
@@ -108,8 +109,8 @@ export default function Home() {
         		    ${item.price}
         		  </span>
 				</div>
-			</PopoverTrigger>
-			<PopoverContent className="w-80">
+			</DialogTrigger>
+			<DialogContent className="w-80">
 			<div className="grid gap-4">
           <div className="space-y-2">
             <h4 className="font-medium leading-none">Additional info</h4>
@@ -141,8 +142,8 @@ export default function Home() {
 		})}>Order now</Button>
           </div>
         </div>
-			</PopoverContent>
-		</Popover>
+			</DialogContent>
+		</Dialog>
       </BackgroundGradient>
 				):(
 		// eslint-disable-next-line react/jsx-key
@@ -158,8 +159,8 @@ export default function Home() {
         <p className="text-sm text-black/70 dark:text-white/70">
 		  {item.description}
         </p>
-		<Popover>
-			<PopoverTrigger>
+		<Dialog>
+			<DialogTrigger>
 
 			<div className="flex flex-row items-center">
         		<Button className="mt-4 bg-emerald-600 hover:bg-emerald-600 pl-2 pr-2 rounded-r-none inline">
@@ -169,8 +170,8 @@ export default function Home() {
         		    ${item.price}
         		  </span>
 				</div>
-			</PopoverTrigger>
-			<PopoverContent className="w-80">
+			</DialogTrigger>
+			<DialogContent className="w-80">
 			<div className="grid gap-4">
           <div className="space-y-2">
             <h4 className="font-medium leading-none">Additional info</h4>
@@ -202,8 +203,8 @@ export default function Home() {
 		})}>Order now</Button>
           </div>
         </div>
-			</PopoverContent>
-		</Popover>
+			</DialogContent>
+		</Dialog>
 					</div>
 				)
 			))}
